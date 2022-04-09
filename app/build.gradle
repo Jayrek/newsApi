@@ -1,0 +1,101 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "com.fs.jayrek.newsapi"
+        minSdk 24
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField('String', 'CONFIG_BASE_URL', '"https://newsapi.org/v2/"')
+            buildConfigField('String', 'NEWS_API_KEY', '"422e1fe6ae3048f89e429e451e60d856"')
+            debuggable true
+            minifyEnabled false
+        }
+        release {
+            buildConfigField('String', 'CONFIG_BASE_URL', '"https://newsapi.org/v2/"')
+            buildConfigField('String', 'NEWS_API_KEY', '"422e1fe6ae3048f89e429e451e60d856"')
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation "androidx.core:core-ktx:$rootProject.ktx"
+    implementation "androidx.appcompat:appcompat:$rootProject.appCompat"
+    implementation "com.google.android.material:material:$rootProject.material"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
+    implementation "androidx.legacy:legacy-support-v4:$rootProject.legacy"
+
+    testImplementation "junit:junit:$rootProject.jUnit"
+    testImplementation "androidx.paging:paging-common:$rootProject.paging"
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.jUnitExt"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso"
+
+    /**lifecycle*/
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycleViewModel"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleViewModel"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycleViewModel"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleExt"
+
+    /**navigation*/
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation"
+
+    /**coroutines*/
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+
+    /**image*/
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+
+    /**hilt*/
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt"
+
+    /**room*/
+    implementation "androidx.room:room-runtime:$rootProject.room"
+    kapt "androidx.room:room-compiler:$rootProject.room"
+
+    /**retrofit*/
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+
+    /**moshi*/
+    implementation "com.squareup.retrofit2:converter-moshi:$rootProject.moshi"
+
+    /**okhttp*/
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+
+    /**timber*/
+    implementation "com.jakewharton.timber:timber:$rootProject.timber"
+
+    /**paging*/
+    implementation "androidx.paging:paging-runtime:$rootProject.paging"
+}
