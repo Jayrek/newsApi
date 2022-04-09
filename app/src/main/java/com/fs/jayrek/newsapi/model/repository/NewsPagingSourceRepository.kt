@@ -13,7 +13,7 @@ class NewsPagingSourceRepository(private val apiInterface: ApiInterface) : Pagin
         val pageIndex = params.key ?: NEWS_STARTING_INDEX
         try {
             val response = apiInterface.getEverythingNews(
-                "nba",
+                "ukraine",
                 pageIndex,
                 NEWS_PAGE_SIZE,
                 BuildConfig.NEWS_API_KEY
