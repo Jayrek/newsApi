@@ -18,12 +18,8 @@ import javax.inject.Inject
 class NewsPagingDataViewModel @Inject constructor(private val apiInterface: ApiInterface) :
     ViewModel() {
 
-    fun getNews(): Flow<PagingData<Article>> {
-        return Pager(
-            config = PagingConfig(pageSize = NEWS_PAGE_SIZE)
-        ) {
-            NewsPagingSourceRepository(apiInterface)
-        }.flow.cachedIn(viewModelScope)
-    }
+    fun getNews(): Flow<PagingData<Article>> = Pager(
+        config = PagingConfig(pageSize = NEWS_PAGE_SIZE)
+    ) { NewsPagingSourceRepository(apiInterface) }.flow.cachedIn(viewModelScope)
 
 }
