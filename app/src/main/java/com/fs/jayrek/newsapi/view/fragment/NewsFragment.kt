@@ -45,7 +45,6 @@ class NewsFragment : Fragment() {
         val viewModel: NewsPagingDataViewModel by viewModels()
         lifecycleScope.launchWhenCreated {
             viewModel.getNews().collectLatest {
-                Timber.v("news: $it")
                 newsAdapter.submitData(it)
             }
         }
