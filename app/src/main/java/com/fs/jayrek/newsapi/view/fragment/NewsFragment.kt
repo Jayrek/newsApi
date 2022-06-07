@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fs.jayrek.newsapi.R
 import com.fs.jayrek.newsapi.databinding.FragmentNewsBinding
 import com.fs.jayrek.newsapi.view.adapter.NewsPagingAdapter
-import com.fs.jayrek.newsapi.vmodel.NewsPagingDataViewModel
+import com.fs.jayrek.newsapi.vmodel.NewsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
-import timber.log.Timber
 
 @AndroidEntryPoint
 class NewsFragment : Fragment() {
@@ -42,9 +41,9 @@ class NewsFragment : Fragment() {
     }
 
     private fun observers() {
-        val viewModel: NewsPagingDataViewModel by viewModels()
+        val viewModel: NewsViewModel by viewModels()
         lifecycleScope.launchWhenCreated {
-            viewModel.getNews().collectLatest {
+            viewModel.getNews("google").collectLatest {
                 newsAdapter.submitData(it)
             }
         }

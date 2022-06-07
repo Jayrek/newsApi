@@ -7,13 +7,16 @@ import com.fs.jayrek.newsapi.model.helper.Constants.Companion.NEWS_PAGE_SIZE
 import com.fs.jayrek.newsapi.model.helper.Constants.Companion.NEWS_STARTING_INDEX
 import com.fs.jayrek.newsapi.model.model.Article
 
-class NewsPagingSourceRepository(private val apiInterface: ApiInterface) : PagingSource<Int, Article>() {
+class SearchNewsRepository(
+    private val keyWord: String,
+    private val apiInterface: ApiInterface
+) : PagingSource<Int, Article>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
         val pageIndex = params.key ?: NEWS_STARTING_INDEX
         try {
             val response = apiInterface.getEverythingNews(
-                "ukraine",
+                keyWord,
                 pageIndex,
                 NEWS_PAGE_SIZE,
                 BuildConfig.NEWS_API_KEY
