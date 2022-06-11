@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.fs.jayrek.newsapi.R
 import com.fs.jayrek.newsapi.databinding.FragmentSearchBinding
 import com.fs.jayrek.newsapi.databinding.FragmentSettingsBinding
+import com.fs.jayrek.newsapi.view.adapter.ViewPagerAdapter
 
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
@@ -18,6 +19,13 @@ class SettingsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        val fragments: ArrayList<Fragment> = arrayListOf(
+            NewsFragment(),
+            SearchFragment()
+        )
+        val adapter = ViewPagerAdapter(fragments, requireActivity())
+        binding.viewPager.adapter = adapter
+
         return binding.root
     }
 }
